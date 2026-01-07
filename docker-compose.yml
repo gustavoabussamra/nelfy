@@ -1,270 +1,270 @@
-services:
-  mysql:
-    image: mysql:8.0
-    container_name: fin_mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: fin_system
-      MYSQL_USER: fin_user
-      MYSQL_PASSWORD: fin_password
-      TZ: America/Sao_Paulo
-    ports:
-      - "3307:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - fin_network
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      timeout: 20s
-      retries: 10
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 1G
-        reservations:
-          cpus: '0.25'
-          memory: 512M
+  services:
+    mysql:
+      image: mysql:8.0
+      container_name: fin_mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: rootpassword
+        MYSQL_DATABASE: fin_system
+        MYSQL_USER: fin_user
+        MYSQL_PASSWORD: fin_password
+        TZ: America/Sao_Paulo
+      ports:
+        - "3307:3306"
+      volumes:
+        - mysql_data:/var/lib/mysql
+      networks:
+        - fin_network
+      healthcheck:
+        test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+        timeout: 20s
+        retries: 10
+      deploy:
+        resources:
+          limits:
+            cpus: '1.0'
+            memory: 1G
+          reservations:
+            cpus: '0.25'
+            memory: 512M
 
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: fin_backend
-    ports:
-      - "8085:8080"
-    env_file:
-      - .env
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/fin_system?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=America/Sao_Paulo&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&useServerPrepStmts=true&cachePrepStmts=true&prepStmtCacheSize=250&prepStmtCacheSqlLimit=2048
-      TZ: America/Sao_Paulo
-      SPRING_DATASOURCE_USERNAME: fin_user
-      SPRING_DATASOURCE_PASSWORD: fin_password
-      JWT_SECRET: your-super-secret-jwt-key-change-in-production-min-256-bits
-      JWT_EXPIRATION: 86400000
-      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
-      AI_USE_LEARNING: ${AI_USE_LEARNING:-true}
-      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
-      SPRING_REDIS_HOST: redis
-      SPRING_REDIS_PORT: 6379
-      SPRING_REDIS_PASSWORD:
-      MINIO_ENDPOINT: http://minio:9000
-      MINIO_PUBLIC_URL: http://72.61.134.94:9002
-      MINIO_ACCESS_KEY: minioadmin
-      MINIO_SECRET_KEY: minioadmin123
-      MINIO_BUCKET_NAME: fin-attachments
-    depends_on:
-      mysql:
-        condition: service_healthy
-      kafka:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-      minio:
-        condition: service_healthy
-    networks:
-      - fin_network
-    deploy:
-      resources:
-        limits:
-          cpus: '2.0'
-          memory: 2G
-        reservations:
-          cpus: '0.5'
-          memory: 512M
+    backend:
+      build:
+        context: ./backend
+        dockerfile: Dockerfile
+      container_name: fin_backend
+      ports:
+        - "8085:8080"
+      env_file:
+        - .env
+      environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/fin_system?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=America/Sao_Paulo&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&useServerPrepStmts=true&cachePrepStmts=true&prepStmtCacheSize=250&prepStmtCacheSqlLimit=2048
+        TZ: America/Sao_Paulo
+        SPRING_DATASOURCE_USERNAME: fin_user
+        SPRING_DATASOURCE_PASSWORD: fin_password
+        JWT_SECRET: your-super-secret-jwt-key-change-in-production-min-256-bits
+        JWT_EXPIRATION: 86400000
+        OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+        AI_USE_LEARNING: ${AI_USE_LEARNING:-true}
+        KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+        SPRING_REDIS_HOST: redis
+        SPRING_REDIS_PORT: 6379
+        SPRING_REDIS_PASSWORD:
+        MINIO_ENDPOINT: http://minio:9000
+        MINIO_PUBLIC_URL: http://72.61.134.94:9002
+        MINIO_ACCESS_KEY: minioadmin
+        MINIO_SECRET_KEY: minioadmin123
+        MINIO_BUCKET_NAME: fin-attachments
+      depends_on:
+        mysql:
+          condition: service_healthy
+        kafka:
+          condition: service_healthy
+        redis:
+          condition: service_healthy
+        minio:
+          condition: service_healthy
+      networks:
+        - fin_network
+      deploy:
+        resources:
+          limits:
+            cpus: '2.0'
+            memory: 2G
+          reservations:
+            cpus: '0.5'
+            memory: 512M
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: fin_frontend
-    ports:
-      - "3002:3000"
-    environment:
-      REACT_APP_API_URL: http://72.61.134.94:8085/api
-      TZ: America/Sao_Paulo
-    depends_on:
-      - backend
-    networks:
-      - fin_network
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 1G
-        reservations:
-          cpus: '0.25'
-          memory: 256M
+    frontend:
+      build:
+        context: ./frontend
+        dockerfile: Dockerfile
+      container_name: fin_frontend
+      ports:
+        - "3002:3000"
+      environment:
+        REACT_APP_API_URL: http://72.61.134.94:8085/api
+        TZ: America/Sao_Paulo
+      depends_on:
+        - backend
+      networks:
+        - fin_network
+      volumes:
+        - ./frontend:/app
+        - /app/node_modules
+      deploy:
+        resources:
+          limits:
+            cpus: '1.0'
+            memory: 1G
+          reservations:
+            cpus: '0.25'
+            memory: 256M
 
-  zookeeper:
-    image: confluentinc/cp-zookeeper:7.5.0
-    container_name: fin_zookeeper
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
-      TZ: America/Sao_Paulo
-    ports:
-      - "2182:2181"
-    networks:
-      - fin_network
-    healthcheck:
-      test: ["CMD", "nc", "-z", "localhost", "2181"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+    zookeeper:
+      image: confluentinc/cp-zookeeper:7.5.0
+      container_name: fin_zookeeper
+      environment:
+        ZOOKEEPER_CLIENT_PORT: 2181
+        ZOOKEEPER_TICK_TIME: 2000
+        TZ: America/Sao_Paulo
+      ports:
+        - "2182:2181"
+      networks:
+        - fin_network
+      healthcheck:
+        test: ["CMD", "nc", "-z", "localhost", "2181"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
 
-  kafka:
-    image: confluentinc/cp-kafka:7.5.0
-    container_name: fin_kafka
-    depends_on:
-      zookeeper:
-        condition: service_healthy
-    ports:
-      - "9094:9092"
-      - "9095:9093"
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://72.61.134.94:9094,PLAINTEXT_INTERNAL://kafka:29092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
-      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-      TZ: America/Sao_Paulo
-    networks:
-      - fin_network
-    healthcheck:
-      test: ["CMD", "kafka-broker-api-versions", "--bootstrap-server", "localhost:9092"]
-      interval: 10s
-      timeout: 10s
-      retries: 5
+    kafka:
+      image: confluentinc/cp-kafka:7.5.0
+      container_name: fin_kafka
+      depends_on:
+        zookeeper:
+          condition: service_healthy
+      ports:
+        - "9094:9092"
+        - "9095:9093"
+      environment:
+        KAFKA_BROKER_ID: 1
+        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://72.61.134.94:9094,PLAINTEXT_INTERNAL://kafka:29092
+        KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+        KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL
+        KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+        KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+        KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+        TZ: America/Sao_Paulo
+      networks:
+        - fin_network
+      healthcheck:
+        test: ["CMD", "kafka-broker-api-versions", "--bootstrap-server", "localhost:9092"]
+        interval: 10s
+        timeout: 10s
+        retries: 5
 
-  kafka-ui:
-    image: provectuslabs/kafka-ui:latest
-    container_name: fin_kafka_ui
-    depends_on:
-      kafka:
-        condition: service_healthy
-    ports:
-      - "8083:8080"
-    environment:
-      KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
-      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
-      KAFKA_CLUSTERS_0_READONLY: false
-      AUTH_TYPE: LOGIN_FORM
-      SPRING_SECURITY_USER_NAME: admin
-      SPRING_SECURITY_USER_PASSWORD: kafka123
-      TZ: America/Sao_Paulo
-    networks:
-      - fin_network
+    kafka-ui:
+      image: provectuslabs/kafka-ui:latest
+      container_name: fin_kafka_ui
+      depends_on:
+        kafka:
+          condition: service_healthy
+      ports:
+        - "8083:8080"
+      environment:
+        KAFKA_CLUSTERS_0_NAME: local
+        KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+        KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+        KAFKA_CLUSTERS_0_READONLY: "false"
+        AUTH_TYPE: LOGIN_FORM
+        SPRING_SECURITY_USER_NAME: admin
+        SPRING_SECURITY_USER_PASSWORD: kafka123
+        TZ: America/Sao_Paulo
+      networks:
+        - fin_network
 
-  transaction-consumer:
-    build:
-      context: ./transaction-consumer
-      dockerfile: Dockerfile
-    container_name: fin_transaction_consumer
-    ports:
-      - "8084:8082"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/fin_system?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=America/Sao_Paulo&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&useServerPrepStmts=true&cachePrepStmts=true&prepStmtCacheSize=250&prepStmtCacheSqlLimit=2048
-      TZ: America/Sao_Paulo
-      SPRING_DATASOURCE_USERNAME: fin_user
-      SPRING_DATASOURCE_PASSWORD: fin_password
-      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
-    depends_on:
-      mysql:
-        condition: service_healthy
-      kafka:
-        condition: service_healthy
-    networks:
-      - fin_network
+    transaction-consumer:
+      build:
+        context: ./transaction-consumer
+        dockerfile: Dockerfile
+      container_name: fin_transaction_consumer
+      ports:
+        - "8084:8082"
+      environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/fin_system?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=America/Sao_Paulo&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&useServerPrepStmts=true&cachePrepStmts=true&prepStmtCacheSize=250&prepStmtCacheSqlLimit=2048
+        TZ: America/Sao_Paulo
+        SPRING_DATASOURCE_USERNAME: fin_user
+        SPRING_DATASOURCE_PASSWORD: fin_password
+        KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      depends_on:
+        mysql:
+          condition: service_healthy
+        kafka:
+          condition: service_healthy
+      networks:
+        - fin_network
 
-  redis:
-    image: redis:7-alpine
-    container_name: fin_redis
-    ports:
-      - "6380:6379"
-    volumes:
-      - redis_data:/data
-    networks:
-      - fin_network
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 512M
-        reservations:
-          cpus: '0.1'
-          memory: 128M
-    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    redis:
+      image: redis:7-alpine
+      container_name: fin_redis
+      ports:
+        - "6380:6379"
+      volumes:
+        - redis_data:/data
+      networks:
+        - fin_network
+      healthcheck:
+        test: ["CMD", "redis-cli", "ping"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+      deploy:
+        resources:
+          limits:
+            cpus: '0.5'
+            memory: 512M
+          reservations:
+            cpus: '0.1'
+            memory: 128M
+      command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
 
-  minio:
-    image: minio/minio:latest
-    container_name: fin_minio
-    ports:
-      - "9002:9000"
-      - "9003:9001"
-    environment:
-      MINIO_ROOT_USER: minioadmin
-      MINIO_ROOT_PASSWORD: minioadmin123
-      TZ: America/Sao_Paulo
-    volumes:
-      - minio_data:/data
-    networks:
-      - fin_network
-    command: server /data --console-address ":9001"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
-      interval: 30s
-      timeout: 20s
-      retries: 3
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 512M
-        reservations:
-          cpus: '0.1'
-          memory: 128M
+    minio:
+      image: minio/minio:latest
+      container_name: fin_minio
+      ports:
+        - "9002:9000"
+        - "9003:9001"
+      environment:
+        MINIO_ROOT_USER: minioadmin
+        MINIO_ROOT_PASSWORD: minioadmin123
+        TZ: America/Sao_Paulo
+      volumes:
+        - minio_data:/data
+      networks:
+        - fin_network
+      command: server /data --console-address ":9001"
+      healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+        interval: 30s
+        timeout: 20s
+        retries: 3
+      deploy:
+        resources:
+          limits:
+            cpus: '0.5'
+            memory: 512M
+          reservations:
+            cpus: '0.1'
+            memory: 128M
 
-  landing-page:
-    build:
-      context: ./landing-page
-      dockerfile: Dockerfile
-      args:
+    landing-page:
+      build:
+        context: ./landing-page
+        dockerfile: Dockerfile
+        args:
+          - VITE_API_URL=http://72.61.134.94:8085
+          - VITE_FRONTEND_URL=http://72.61.134.94:3002
+      container_name: fin-landing-page
+      ports:
+        - "3001:80"
+      environment:
         - VITE_API_URL=http://72.61.134.94:8085
         - VITE_FRONTEND_URL=http://72.61.134.94:3002
-    container_name: fin-landing-page
-    ports:
-      - "3001:80"
-    environment:
-      - VITE_API_URL=http://72.61.134.94:8085
-      - VITE_FRONTEND_URL=http://72.61.134.94:3002
-    depends_on:
-      - backend
-    networks:
-      - fin_network
-    restart: unless-stopped
+      depends_on:
+        - backend
+      networks:
+        - fin_network
+      restart: unless-stopped
 
-volumes:
-  mysql_data:
-  kafka_data:
-  zookeeper_data:
-  redis_data:
-  minio_data:
+  volumes:
+    mysql_data:
+    kafka_data:
+    zookeeper_data:
+    redis_data:
+    minio_data:
 
-networks:
-  fin_network:
-    driver: bridge
+  networks:
+    fin_network:
+      driver: bridge
 
