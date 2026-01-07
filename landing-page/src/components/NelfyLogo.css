@@ -1,0 +1,62 @@
+.nelfy-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nelfy-logo-mark {
+  flex-shrink: 0;
+}
+
+.nelfy-logo.small .nelfy-logo-mark {
+  width: 32px;
+  height: 32px;
+}
+
+.nelfy-logo.medium .nelfy-logo-mark {
+  width: 48px;
+  height: 48px;
+}
+
+.nelfy-logo.large .nelfy-logo-mark {
+  width: 64px;
+  height: 64px;
+}
+
+.nelfy-logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nelfy-brand-name {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #000000;
+  line-height: 1.2;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.nelfy-tagline {
+  font-size: 0.75rem;
+  color: #000000;
+  line-height: 1.2;
+  font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.nelfy-logo.small .nelfy-brand-name {
+  font-size: 1.125rem;
+}
+
+.nelfy-logo.small .nelfy-tagline {
+  font-size: 0.625rem;
+}
+
+.nelfy-logo.large .nelfy-brand-name {
+  font-size: 2rem;
+}
+
+.nelfy-logo.large .nelfy-tagline {
+  font-size: 0.875rem;
+}

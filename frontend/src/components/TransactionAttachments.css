@@ -1,0 +1,140 @@
+.transaction-attachments {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.attachments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.attachments-header h4 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 1rem;
+}
+
+.btn-upload {
+  padding: 0.5rem 1rem;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.btn-upload:hover:not(:disabled) {
+  background: #4f46e5;
+}
+
+.btn-upload:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.upload-section {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  border: 2px dashed #d1d5db;
+}
+
+.upload-label {
+  display: block;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  color: #6366f1;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.upload-label:hover {
+  color: #4f46e5;
+}
+
+.attachments-loading,
+.attachments-empty {
+  text-align: center;
+  padding: 1rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.attachments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.attachment-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s;
+}
+
+.attachment-item:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.attachment-icon {
+  font-size: 1.5rem;
+}
+
+.attachment-info {
+  flex: 1;
+}
+
+.attachment-name {
+  font-weight: 500;
+  color: #1f2937;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.attachment-meta {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.attachment-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-download,
+.btn-delete-attachment {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  background: transparent;
+  transition: all 0.3s;
+}
+
+.btn-download:hover {
+  background: #f0f9ff;
+}
+
+.btn-delete-attachment:hover {
+  background: #fee2e2;
+}
+
+
+
+

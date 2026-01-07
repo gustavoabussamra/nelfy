@@ -1,0 +1,903 @@
+.referrals-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+.referral-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.stat-card.future-stat {
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+}
+
+.stat-card.withdrawal-stat {
+  background: #dbeafe;
+  border-left: 4px solid #3b82f6;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.stat-card.withdrawal-stat .stat-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.stat-card.withdrawal-stat .stat-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.btn-withdraw {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+  white-space: nowrap;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.btn-withdraw:hover {
+  background: #2563eb;
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #6366f1;
+}
+
+.stat-label {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.referral-code-section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.referral-code-section h2 {
+  margin-bottom: 1rem;
+  color: #1f2937;
+}
+
+.code-display {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.code-value {
+  flex: 1;
+  background: #f3f4f6;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #6366f1;
+  text-align: center;
+}
+
+.btn-copy {
+  padding: 1rem 2rem;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-copy:hover {
+  background: #4f46e5;
+  transform: translateY(-2px);
+}
+
+.btn-copy.copied {
+  background: #10b981;
+}
+
+.code-hint {
+  color: #6b7280;
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+
+.referrals-list {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.referrals-list h2 {
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+}
+
+.referrals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.referral-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s;
+}
+
+.referral-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.referral-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.referral-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-icon {
+  font-size: 1.5rem;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.reward-badge {
+  background: #10b981;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.plan-badge {
+  background: #6366f1;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.referral-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.detail-label {
+  color: #6b7280;
+}
+
+.detail-value {
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.detail-item.highlight {
+  background: #f0f9ff;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+}
+
+.detail-item.highlight .detail-value {
+  color: #10b981;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.detail-item.highlight.future {
+  background: #fef3c7;
+  border-left: 3px solid #f59e0b;
+}
+
+.detail-item.highlight.future .detail-value {
+  color: #f59e0b;
+}
+
+.commissions-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.commissions-section h4 {
+  margin-bottom: 1rem;
+  color: #1f2937;
+  font-size: 1rem;
+}
+
+.commissions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.commission-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  border-left: 3px solid #6366f1;
+}
+
+.commission-item.future {
+  background: #fef3c7;
+  border-left: 3px solid #f59e0b;
+  opacity: 0.9;
+}
+
+.commission-date {
+  font-weight: 700;
+  color: #6366f1;
+  min-width: 60px;
+  font-size: 0.9rem;
+}
+
+.commission-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.commission-plan {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 0.9rem;
+}
+
+.commission-amounts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.monthly-amount {
+  color: #6b7280;
+}
+
+.commission-amount {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.commission-amount.future-amount {
+  color: #f59e0b;
+}
+
+.commission-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.future-badge {
+  background: #f59e0b;
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.paid-badge {
+  background: #10b981;
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.withdrawals-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.withdrawals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.withdrawal-item {
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #6366f1;
+  background: #f9fafb;
+}
+
+.withdrawal-item.pending {
+  border-left-color: #f59e0b;
+  background: #fef3c7;
+}
+
+.withdrawal-item.processing {
+  border-left-color: #3b82f6;
+  background: #dbeafe;
+}
+
+.withdrawal-item.completed {
+  border-left-color: #10b981;
+  background: #d1fae5;
+}
+
+.withdrawal-item.rejected {
+  border-left-color: #ef4444;
+  background: #fee2e2;
+}
+
+.withdrawal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.withdrawal-amount {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.status-badge.pending {
+  background: #f59e0b;
+  color: white;
+}
+
+.status-badge.processing {
+  background: #3b82f6;
+  color: white;
+}
+
+.status-badge.completed {
+  background: #10b981;
+  color: white;
+}
+
+.status-badge.rejected {
+  background: #ef4444;
+  color: white;
+}
+
+.withdrawal-details {
+  font-size: 0.875rem;
+  color: #6b7280;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.receipt-link {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.receipt-link:hover {
+  text-decoration: underline;
+}
+
+.withdrawal-warning {
+  background: #fef3c7;
+  border-left: 3px solid #f59e0b;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  color: #92400e;
+  font-size: 0.875rem;
+}
+
+.referral-info {
+  background: #f0f9ff;
+  border-left: 4px solid #6366f1;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.referral-info h3 {
+  margin-bottom: 1rem;
+  color: #1f2937;
+}
+
+.referral-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.referral-info li {
+  padding: 0.5rem 0;
+  color: #374151;
+}
+
+@media (max-width: 768px) {
+  .referrals-page {
+    padding: 1rem;
+  }
+
+  .code-display {
+    flex-direction: column;
+  }
+
+  .code-value {
+    width: 100%;
+  }
+
+  .btn-copy {
+    width: 100%;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.receipt-view-modal {
+  max-width: 90vw;
+  max-height: 90vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.receipt-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.receipt-modal-header h2 {
+  margin: 0;
+  color: #1f2937;
+}
+
+.close-modal-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.close-modal-btn:hover {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.receipt-modal-body {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  overflow: auto;
+  background: #f9fafb;
+}
+
+.receipt-modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  background: #e5e7eb;
+  color: #374151;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #d1d5db;
+}
+
+.btn-view-all {
+  padding: 0.75rem 1.5rem;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-view-all:hover {
+  background: #4f46e5;
+}
+
+.referrals-table-container {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.referrals-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.referrals-table thead {
+  background: #f9fafb;
+}
+
+.referrals-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.referrals-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.referrals-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.commission-paid {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.commission-future {
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+.btn-details {
+  padding: 0.5rem 1rem;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.btn-details:hover {
+  background: #4f46e5;
+}
+
+.all-withdrawals-modal {
+  max-width: 95vw;
+  max-height: 90vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header-with-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.modal-header-with-actions h2 {
+  margin: 0;
+  color: #1f2937;
+}
+
+.export-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-export {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-export-pdf {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+}
+
+.btn-export-pdf:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.4);
+}
+
+.btn-export-excel {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.btn-export-excel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.4);
+}
+
+.withdrawals-table-container {
+  overflow-x: auto;
+  flex: 1;
+  padding: 1.5rem;
+}
+
+.withdrawals-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.withdrawals-table thead {
+  background: #f9fafb;
+}
+
+.withdrawals-table th {
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  font-size: 0.875rem;
+}
+
+.withdrawals-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.875rem;
+}
+
+.withdrawals-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.btn-view-receipt {
+  padding: 0.5rem 1rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.btn-view-receipt:hover {
+  background: #2563eb;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.pagination button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #e5e7eb;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pagination button:hover:not(:disabled) {
+  border-color: #6366f1;
+  color: #6366f1;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.referral-details-modal {
+  max-width: 800px;
+  max-height: 90vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.referral-details-content {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.detail-section {
+  margin-bottom: 2rem;
+}
+
+.detail-section h3 {
+  margin-bottom: 1rem;
+  color: #1f2937;
+  font-size: 1.1rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.detail-row.highlight {
+  background: #f0f9ff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  border-bottom: none;
+}
+
+.detail-row.highlight.future {
+  background: #fef3c7;
+  border-left: 3px solid #f59e0b;
+}
+
+.detail-row .detail-label {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.detail-row .detail-value {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.detail-row.highlight .detail-value {
+  color: #10b981;
+  font-size: 1.1rem;
+}
+
+.detail-row.highlight.future .detail-value {
+  color: #f59e0b;
+}
+
